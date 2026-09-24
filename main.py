@@ -14,39 +14,39 @@ def home():
     return "<h1>Welcome to SmartMove Home Page!</h1><br><a href='/register'>Go to Register Page</a>"
 
 
-# GET සහ POST ක්‍රම දෙකම මෙතනට ඇතුළත් කර ඇත
+# GET and POST include
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    # රෙජිස්ටර් වූ බව පෙන්වීමට විචල්‍යයක් (variable)
+    # register una kiyanna variable
     success_message = False
 
     if request.method == "POST":
-        # HTML ෆෝම් එකෙන් එවන දත්ත ලබා ගැනීම
+        # HTML form eke data ganima
         name = request.form.get("name")
         email = request.form.get("email")
         password = request.form.get("psw")
 
-        # දත්ත එකතුවක් (Dictionary) ලෙස සකස් කිරීම
+        # data Dictionary lesa hadima
         passenger_data = {
             "name": name,
             "email": email,
             "password": password
         }
 
-        # සකස් කළ දත්ත MongoDB collection එකට ඇතුළත් කිරීම
+        # haduwa MongoDB collection eka insert kara
         passengers_collection.insert_one(passenger_data)
         success_message = True
 
-    # MongoDB එකේ තියෙන සියලුම මගීන්ගේ දත්ත ලබාගැනීම
+    # MongoDB eken okkoma data gannawa
     passengers_list = list(passengers_collection.find())
 
-    # දත්ත සහ ෆෝම් එක සහිත පිටුව පෙන්වීම
+    # data ha form eka thiyana ewa penwima
     return render_template("index.html", passengers=passengers_list, success=success_message)
 
 
 @app.route("/login")
 def login():
-    return "<h1>Login Page - ඉදිරියේදී නිර්මාණය කෙරේ!</h1>"
+    return "<h1>Login Page - Next to update hode!</h1>"
 
 
 if __name__ == "__main__":
