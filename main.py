@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-# MongoDB වෙත සම්බන්ධ වීම
+# MongoDB Connect
 client = MongoClient("mongodb://localhost:27017/")
 db = client["smartmove_db"]
 passengers_collection = db["passengers"]
